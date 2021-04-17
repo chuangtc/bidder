@@ -1,0 +1,2 @@
+# bidder
+Bidding server
