@@ -6,5 +6,7 @@ It's interview test from [Bridgewell](https://www.bridgewell.com/en/). The assig
 
 ## Design
 Ubuntu 20.04 LTS
+
 Python 3.8
+
 Django 3.2 LTS
