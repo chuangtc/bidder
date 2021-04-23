@@ -5,6 +5,8 @@ from google.protobuf import text_format
 
 from .models import ad_settings
 
+import random, json
+
 # Create your views here.
 def home_view(*args, **kwargs):
     return HttpResponse("<h1>Hello World! It's Bridgewell's assignment </h1>"
@@ -12,21 +14,27 @@ def home_view(*args, **kwargs):
 
 def bidding_strategy_view(request, *args, **kwargs):
     bid_request = request.body
-
-    #message = text_format.Parse(bid_request, my_proto_pb2.MyMessage())
-
-    #my_proto_pb2.MyMessage(foo=’bar’)
-    #text_proto = text_format.MessageToString(message)
+    bid_floor = 10
+    # new_b = pickle.loads(bid_request)
 
     queryset = ad_settings.objects.all()
-    for each in queryset:
-        print(each.creative_id)
-        print(each.status)
-        print(each.bidding_cpm)
-        print(each.bid_quantity)
+    max_creative_id = -1
+    max_bid_price = -100
 
-    # Case ３ :　Return HTTP 204 (No Content) if final bid price less than bid floor　
-    response = HttpResponse()
-    response.status_code = 204
-    return response
-    #return HttpResponse(bid_request)
+    for each in queryset:
+        if each.status == False:
+            continue
+        bid_price = each.bidding_cpm * random.randrange(1, 10)
+        if bid_price > max_bid_price:
+            max_bid_price = bid_price
+            max_creative_id = each.creative_id
+
+
+    # Case :　Return HTTP 204 (No Content) if final bid price less than bid floor　
+    if max_bid_price < bid_floor:
+        response = HttpResponse()
+        response.status_code = 204
+        return response
+
+    obj = { "creative_id": max_creative_id, "bid_price": max_bid_price }
+    return HttpResponse(json.dumps(obj), content_type="application/json")
