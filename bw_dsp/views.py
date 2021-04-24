@@ -10,7 +10,7 @@ import random, json
 # Create your views here.
 def home_view(*args, **kwargs):
     return HttpResponse("<h1>Hello World! It's Bridgewell's assignment </h1>"
-                        "<a href='http://127.0.0.1:8000/bw_dsp'>Location</a>")
+                        "<a href='http://bridgewell.chuangtc.com/bw_dsp'>http://bridgewell.chuangtc.com/bw_dsp</a>")
 
 def bidding_strategy_view(request, *args, **kwargs):
     bid_request = request.body
