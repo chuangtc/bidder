@@ -197,3 +197,8 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 ubuntu@ip-172-31-9-189:~$ sudo systemctl restart nginx
 
 ```
+Every time, you make some changes in code, please type in the followings:
+```bash
+ubuntu@ip-172-31-9-189:~/bidder$ sudo systemctl restart nginx
+ubuntu@ip-172-31-9-189:~/bidder$ sudo systemctl restart gunicorn
+```
