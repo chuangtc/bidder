@@ -50,13 +50,13 @@ def bidding_strategy_view(request, *args, **kwargs):
         return response
 
     message_BidResponse = ('message BidResponse { \n',
-                           'string id = '+ string_id+';\n' ,
-                           'repeated Bid bid = '+repeated_Imp_imp+';\n',
-                           'message Bid {\n',
-                           'string id = '+ string_id+';\n',
-                           'string impid = '+str(max_creative_id)+';\n',
-                           'double price = '+str(max_bid_price)+';\n',
-                           '}\n',
+                           '  string id = '+ string_id+';\n' ,
+                           '  repeated Bid bid = '+repeated_Imp_imp+';\n',
+                           '  message Bid {\n',
+                           '    string id = '+ string_id+';\n',
+                           '    string impid = '+str(max_creative_id)+';\n',
+                           '    double price = '+str(max_bid_price)+';\n',
+                           '  }\n',
                            '}\n'
                            )
     #obj = { "creative_id": max_creative_id, "bid_price": max_bid_price }
