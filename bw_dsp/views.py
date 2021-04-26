@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from google.protobuf import text_format
+from . import bid_request_pb2
 
 from .models import ad_settings
 
@@ -15,6 +15,12 @@ def home_view(*args, **kwargs):
 def bidding_strategy_view(request, *args, **kwargs):
     bid_request = request.body
     #print(bid_request)
+
+    #bid_request_msg = bid_request_pb2.BidRequest()
+    #ERROR: google.protobuf.message.DecodeError: Wrong wire type in tag.
+    #bid_request_msg.ParseFromString(bid_request)
+    #print(bid_request_msg)
+
     bid_request_str=bid_request.decode('utf-8')
     string_id_beg = bid_request_str.index("string id")
     string_id = bid_request_str[string_id_beg:string_id_beg + 20]

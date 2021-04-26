@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+message BidRequest {
+  // Unique ID of the bid request, provided by the exchange.
+  string id = 1;
+
+  //Array of impression objects.
+  //Multiple impression auctions may be specified in a single bid
+  //request. At least one impression is required for a valid bid request.
+  repeated Imp imp = 2;
+
+	message Imp {
+	  // A unique identifier for this impression within the context of
+	  // the bid request (typically, value starts with 1,
+	  // and increments up to n for n impressions).
+	  string id = 1;
+
+	  // Bid floor for this impression (in CPM of bidfloorcur).
+	  // value : [0, 20]
+	  double bidfloor = 2;
+	}
+
+  User user = 3;
+	  message User {
+	  // Unique consumer ID of this user on the exchange.
+	  string id = 1;
+
+	  // Buyer's user ID for this user as mapped by exchange for the buyer.
+	  string buyeruid = 2;
+	}
+}

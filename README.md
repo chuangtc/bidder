@@ -15,6 +15,9 @@ Django 3.2 LTS
 ```bash
 pip install Django==3.2
 pip install protobuf
+pip install protobuf3-to-dict
+sudo apt install -y protobuf-compiler
+protoc --proto_path=. --python_out=. bid_request.proto
 ```
 
 ## Production environment steps
